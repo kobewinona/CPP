@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:06:01 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/04/04 19:36:15 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/04/04 20:42:54 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	main(int argc, char* argv[])
 	for (int i = 1; i < argc; ++i) {
         std::string str = argv[i];
 
-		for (unsigned long j = 0; j < str.length(); ++j) {
-			str[j] = std::toupper(str[j]);
+		for (std::string::iterator c=str.begin(); c != str.end(); ++c) {
+			(*c) = std::toupper((*c));
 		}
 
 		std::cout << str << (i + 1 != argc ? " " : "");
