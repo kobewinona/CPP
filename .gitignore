@@ -1,0 +1,7 @@
+# IDE
+.vscode
+.idea
+*.dSYM
+
+# objects
+objs
