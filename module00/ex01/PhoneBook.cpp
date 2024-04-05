@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 21:13:24 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/04/05 12:09:59 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:11:30 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static std::string getFormattedFieldValue(const std::string& fieldValue) {
 }
 
 void	PhoneBook::showContacts(void) {
-	std::cout	<< "\033[1m" << std::setw(MAX_FIELD_SIZE) << "Index" << "\033[0m" << " | "
+	std::cout	<< "\n\033[1m" << std::setw(MAX_FIELD_SIZE) << "Index" << "\033[0m" << " | "
 				<< "\033[1m" << std::setw(MAX_FIELD_SIZE) << "First Name" << "\033[0m" << " | "
 				<< "\033[1m" << std::setw(MAX_FIELD_SIZE) << "Last Name" << "\033[0m" << " | "
 				<< "\033[1m" << std::setw(MAX_FIELD_SIZE) << "Nickname" << "\033[0m" << std::endl;
