@@ -1,13 +1,13 @@
-NAME		= phonebook
+NAME		= myPhonebook
 
 CC			= c++
 CFLAGS		= -Wall -Werror -Wextra -std=c++98
 
 RM			= rm -fr
 OBJS_DIR	= objs/
-SRCS		= myPhonebook.cpp PhoneBook.cpp
+SRCS		= myPhonebook.cpp PhoneBook.cpp Contact.cpp
 OBJS		= $(SRCS:%.cpp=$(OBJS_DIR)%.o)
-DEPS		= Makefile myPhonebook.hpp PhoneBook.hpp
+DEPS		= Makefile myPhonebook.hpp constants.hpp PhoneBook.hpp Contact.hpp
 
 $(shell mkdir -p $(OBJS_DIR))
 
