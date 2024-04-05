@@ -9,7 +9,7 @@ SRCS		= myPhonebook.cpp PhoneBook.cpp Contact.cpp
 OBJS		= $(SRCS:%.cpp=$(OBJS_DIR)%.o)
 DEPS		= Makefile myPhonebook.hpp constants.hpp PhoneBook.hpp Contact.hpp
 
-$(shell mkdir -p $(OBJS_DIR))
+all: $(NAME)
 
 $(NAME): $(OBJS) $(DEPS)
 	@echo "Linking..."
@@ -17,11 +17,9 @@ $(NAME): $(OBJS) $(DEPS)
 	@echo "Build complete."
 
 $(OBJS_DIR)%.o: %.cpp
+	@mkdir -p $(OBJS_DIR)
 	@echo "Compiling $<..."
 	@$(CC) $(CFLAGS) -c $< -o $@
-
-all: $(NAME)
-	@echo "Building $(NAME)..."
 
 clean:
 	$(RM) $(OBJS_DIR)
