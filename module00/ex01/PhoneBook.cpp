@@ -6,13 +6,13 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 21:13:24 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/04/05 12:11:30 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:26:37 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook() : _numberOfContacts(0) {}
+PhoneBook::PhoneBook() : _numberOfContacts(0), _nextContactIndex(0) {}
 
 PhoneBook::PhoneBook(const PhoneBook &other) {
 	for (int i = 0; i < MAX_NUMBER_OF_CONTACTS; ++i)
@@ -28,10 +28,10 @@ PhoneBook& PhoneBook::operator=(const PhoneBook& other) {
 }
 
 void	PhoneBook::addContact(Contact contact) {
-	if (_numberOfContacts >= 8)
-		_numberOfContacts = 0;
-    if (_numberOfContacts < 8)
-        _contacts[_numberOfContacts++] = contact;
+	if (_nextContactIndex >= MAX_NUMBER_OF_CONTACTS) _nextContactIndex = 0;
+
+	_numberOfContacts++;
+	_contacts[_nextContactIndex++] = contact;
 }
 
 static std::string getFormattedFieldValue(const std::string& fieldValue) {
@@ -45,12 +45,16 @@ static std::string getFormattedFieldValue(const std::string& fieldValue) {
 }
 
 void	PhoneBook::showContacts(void) {
+	if (_numberOfContacts == 0) {
+		std::cout << NO_CONTACTS_MSG << std::endl;
+		return;
+	}
 	std::cout	<< "\n\033[1m" << std::setw(MAX_FIELD_SIZE) << "Index" << "\033[0m" << " | "
 				<< "\033[1m" << std::setw(MAX_FIELD_SIZE) << "First Name" << "\033[0m" << " | "
 				<< "\033[1m" << std::setw(MAX_FIELD_SIZE) << "Last Name" << "\033[0m" << " | "
 				<< "\033[1m" << std::setw(MAX_FIELD_SIZE) << "Nickname" << "\033[0m" << std::endl;
 
-	for (int i = 0; i < _numberOfContacts; ++i) {
+	for (int i = 0; i < MAX_NUMBER_OF_CONTACTS && i < _numberOfContacts; ++i) {
 		std::cout	<< std::setw(MAX_FIELD_SIZE)
 					<< i << " | "
 					<< std::setw(MAX_FIELD_SIZE)

@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 21:12:46 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/04/05 12:08:46 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:19:27 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ class PhoneBook {
 		~PhoneBook();
 		PhoneBook & operator=(const PhoneBook &other);
 
-		void	addContact(Contact contact);
-		void	showContacts(void);
+		void		addContact(Contact contact);
+		void		showContacts(void);
 
 	private:
-		Contact _contacts[MAX_NUMBER_OF_CONTACTS];
-		int 	_numberOfContacts;
+		Contact		_contacts[MAX_NUMBER_OF_CONTACTS];
+		int			_numberOfContacts;
+		int			_nextContactIndex;
 };
 
 #endif
