@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 06:36:44 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/04/05 12:05:31 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:14:01 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class Contact {
 		std::string	getNickname(void);
 		std::string	getPhoneNumber(void);
 		std::string	getDarkestSecret(void);
+		void		showContactDetails(int index);
 
 	private:
 		std::string	_firstName;
@@ -38,6 +39,10 @@ class Contact {
 		std::string _nickname;
 		std::string	_phoneNumber;
 		std::string _darkestSecret;
+
+		bool		_isValidName(std::string input);
+		bool		_isValidPhoneNumber(std::string input);
+		std::string	_getFieldValue(std::string prompt, t_inputTypes inputType);
 };
 
 #endif

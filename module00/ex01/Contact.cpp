@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 06:38:12 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/04/05 12:05:34 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:14:16 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ Contact& Contact::operator=(const Contact& other) {
     return (*this);
 }
 
-static bool	isValidName(std::string input) {
+bool	Contact::_isValidName(std::string input) {
 	for (std::string::iterator c=input.begin(); c != input.end(); ++c) {
 		if (!std::isalpha((*c)))
 			return (false);
@@ -47,7 +47,7 @@ static bool	isValidName(std::string input) {
 	return (true);
 }
 
-static bool	isValidPhoneNumber(std::string input) {
+bool	Contact::_isValidPhoneNumber(std::string input) {
 	for (std::string::iterator c=input.begin(); c != input.end(); ++c) {
 		if (!std::isdigit((*c)))
 			return (false);
@@ -55,7 +55,7 @@ static bool	isValidPhoneNumber(std::string input) {
 	return (true);
 }
 
-static std::string	getFieldValue(std::string prompt, t_inputTypes inputType) {
+std::string	Contact::_getFieldValue(std::string prompt, t_inputTypes inputType) {
 	std::string input;
 	bool		isError;
 
@@ -65,17 +65,17 @@ static std::string	getFieldValue(std::string prompt, t_inputTypes inputType) {
         std::getline(std::cin, input);
 		isError = input.empty();
         if (isError) {
-			std::cout << ERROR_PREFIX << EMPTY_FIELD_ERR << std::endl;
+			std::cerr << ERROR_PREFIX << EMPTY_FIELD_ERR << "\n" << std::endl;
 			continue;
 		}
-		isError = inputType == NAME && !isValidName(input);
+		isError = (inputType == NAME && !_isValidName(input));
 		if (isError) {
-			std::cout << ERROR_PREFIX << NOT_ALPHA_ERR << std::endl;
+			std::cerr << ERROR_PREFIX << NOT_ALPHA_ERR << "\n" <<std::endl;
 			continue;
 		}
-		isError = inputType == PHONE && !isValidPhoneNumber(input);
+		isError = (inputType == PHONE && !_isValidPhoneNumber(input));
 		if (isError) {
-			std::cout << ERROR_PREFIX << NOT_NUM_ERR << std::endl;
+			std::cerr << ERROR_PREFIX << NOT_NUM_ERR << "\n" <<std::endl;
 			continue;
 		}
     } while (isError);
@@ -84,13 +84,11 @@ static std::string	getFieldValue(std::string prompt, t_inputTypes inputType) {
 }
 
 void	Contact::createContact(void) {
-	this->_firstName = getFieldValue(FIRST_NAME_PROMPT, NAME);
-	this->_lastName = getFieldValue(LAST_NAME_PROMPT, NAME);
-	this->_nickname = getFieldValue(NICKNAME_PROMPT, DEFAULT);
-	this->_phoneNumber = getFieldValue(PHONE_NUMBER_PROMPT, PHONE);
-	this->_darkestSecret = getFieldValue(DARKEST_SECRET_PROMPT, DEFAULT);
-
-	std::cout << CONTACT_ADDED_MSG << std::endl;
+	this->_firstName = _getFieldValue(FIRST_NAME_PROMPT, NAME);
+	this->_lastName = _getFieldValue(LAST_NAME_PROMPT, NAME);
+	this->_nickname = _getFieldValue(NICKNAME_PROMPT, DEFAULT);
+	this->_phoneNumber = _getFieldValue(PHONE_NUMBER_PROMPT, PHONE);
+	this->_darkestSecret = _getFieldValue(DARKEST_SECRET_PROMPT, DEFAULT);
 }
 
 std::string	Contact::getFirstName(void) {
@@ -111,4 +109,13 @@ std::string	Contact::getPhoneNumber(void) {
 
 std::string	Contact::getDarkestSecret(void) {
 	return (this->_darkestSecret);
+}
+
+void	Contact::showContactDetails(int index) {
+	std::cout << "\n" << "\033[1mContact #" << index << "\033[0m\n" << std::endl;
+	std::cout << "First name: " << this->_firstName << "\n";
+	std::cout << "Last name: " << this->_lastName << "\n";
+	std::cout << "Nickname: " << this->_nickname << "\n";
+	std::cout << "Phone number: " << this->_phoneNumber << "\n";
+	std::cout << "Darkest secret: " << this->_darkestSecret << "\n\n";
 }

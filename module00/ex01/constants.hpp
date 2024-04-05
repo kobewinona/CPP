@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 11:02:17 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/04/05 12:27:59 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:03:11 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,22 @@
 #define NICKNAME_PROMPT "Enter nickname: "
 #define PHONE_NUMBER_PROMPT "Enter phone number: "
 #define DARKEST_SECRET_PROMPT "Enter your \033[35mdarkest secret\033[0m: "
+#define SEARCH_INDEX_PROMPT "Enter Phone book index: "
 
-#define CONTACT_ADDED_MSG "\n\033[32mContact was succesfully added\033[0\n"
-#define NO_CONTACTS_MSG "\n\033[33mPhone book is empty\033[0\n"
+#define ADD_CMD_PROMPT "save a new contact\n"
+#define SEARCH_CMD_PRMOPT "display a specific contact\n"
+#define EXIT_CMD_PROMPT "exit the program\n"
+
+#define NUMBER_OF_CONTACTS "Total number of contacts: "
+
+#define CONTACT_ADDED_MSG "\033[32mContact was succesfully added\033[0m"
+#define NO_CONTACTS_MSG "\033[33mPhone book is empty\033[0m"
 
 #define ERROR_PREFIX "\033[31mError:\033[0m "
-#define EMPTY_FIELD_ERR "Field should not be empty\n"
-#define NOT_ALPHA_ERR "Field should contain only alphabetic characters\n"
-#define NOT_NUM_ERR "Field should contain only numeric characters\n"
+#define EMPTY_FIELD_ERR "Field should not be empty"
+#define NOT_ALPHA_ERR "Field should contain only alphabetic characters"
+#define NOT_NUM_ERR "Field should contain only numeric characters"
+#define INVALID_INDEX_ERR "Phone book index should be between 1 and "
 
 typedef enum s_enum {
 	DEFAULT,

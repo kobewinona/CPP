@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 21:12:46 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/04/05 12:19:27 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:09:10 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <sstream>
 #include "constants.hpp"
 #include "Contact.hpp"
 
@@ -26,13 +27,14 @@ class PhoneBook {
 		~PhoneBook();
 		PhoneBook & operator=(const PhoneBook &other);
 
-		void		addContact(Contact contact);
-		void		showContacts(void);
+		void	addContact(Contact contact);
+		void	handleSearch(void);
 
 	private:
-		Contact		_contacts[MAX_NUMBER_OF_CONTACTS];
-		int			_numberOfContacts;
-		int			_nextContactIndex;
+		Contact	_contacts[MAX_NUMBER_OF_CONTACTS];
+		int		_numberOfContacts;
+		int		_nextContactIndex;
+		void	_showContacts(void);
 };
 
 #endif
