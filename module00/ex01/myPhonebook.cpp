@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 20:25:22 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/04/05 14:06:19 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:59:50 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,9 @@ int	main(void) {
 	PhoneBook	phoneBook;
 	std::string	input;
 
-	printPrompt();
-	while (true) {
-		std::cout << "> ";
-		std::getline(std::cin, input);
-
+	do {
 		if (!input.compare("ADD")) {
-			Contact		contact;
-			contact.createContact();
-			phoneBook.addContact(contact);
+			phoneBook.addContact();
 		} else if (!input.compare("SEARCH")) {
 			phoneBook.handleSearch();
 		} else if (!input.compare("EXIT")) {
@@ -40,7 +34,10 @@ int	main(void) {
 		} else {
 			printPrompt();
 		}
-	}
+
+		std::cout << "> ";
+		std::getline(std::cin, input);
+	} while (!std::cin.eof());
 
 	return (EXIT_SUCCESS);
 }

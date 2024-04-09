@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 21:13:24 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/04/05 14:28:20 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:15:34 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ PhoneBook& PhoneBook::operator=(const PhoneBook& other) {
 	return ((*this));
 }
 
-void	PhoneBook::addContact(Contact contact) {
+void	PhoneBook::addContact(void) {
 	if (_nextContactIndex >= MAX_NUMBER_OF_CONTACTS) _nextContactIndex = 0;
 
 	if (_numberOfContacts < MAX_NUMBER_OF_CONTACTS) _numberOfContacts++;
-	_contacts[_nextContactIndex++] = contact;
+
+	if (_contacts[_nextContactIndex].createContact() == FAILURE) return;
+	_nextContactIndex++;
 
 	std::cout	<< "\n" << CONTACT_ADDED_MSG << "\n"
 				<< "\033[90m" << NUMBER_OF_CONTACTS << _numberOfContacts << "\033[0m"
@@ -66,9 +68,17 @@ void	PhoneBook::_showContacts(void) {
 	}
 }
 
+void	PhoneBook::_showContact(Contact contact) {
+	std::cout << "First name: " << contact.getFirstName() << "\n";
+	std::cout << "Last name: " << contact.getLastName() << "\n";
+	std::cout << "Nickname: " << contact.getNickname() << "\n";
+	std::cout << "Phone number: " << contact.getPhoneNumber() << "\n";
+	std::cout << "Darkest secret: " << contact.getDarkestSecret() << "\n\n";
+}
+
 void	PhoneBook::handleSearch(void) {
 	std::string	input;
-	int			index;
+	long long	index;
 	bool		isError;
 
 	if (_numberOfContacts == 0) {
@@ -80,8 +90,11 @@ void	PhoneBook::handleSearch(void) {
 
 	do {
 		isError = false;
-		std::cout << SEARCH_INDEX_PROMPT;
+		std::cout << "\n" << SEARCH_INDEX_PROMPT;
     	std::getline(std::cin, input);
+
+		if (std::cin.eof()) return;
+
 		std::istringstream iss(input);
 
 		if (!input.compare("q")) {
@@ -89,18 +102,13 @@ void	PhoneBook::handleSearch(void) {
 			return;
 		}
 
-		if (!(iss >> index))
+		if (!(iss >> index) || !iss.eof() || index < 1 || index > _numberOfContacts) {
 			isError = true;
-		if (isError) {
-			std::cerr << ERROR_PREFIX << NOT_NUM_ERR << std::endl;
-			continue;
-		}
-		isError = index < 1 || index > _numberOfContacts;
-		if (isError) {
 			std::cerr << ERROR_PREFIX << INVALID_INDEX_ERR << _numberOfContacts << "\n" << std::endl;
 			continue;
 		}
 	} while (isError);
 
-	_contacts[index - 1].showContactDetails(index);
+	std::cout << "\n" << "\033[1m" << "- Contact #" << index << " -\033[0m" << std::endl;
+	_showContact(_contacts[index - 1]);
 }

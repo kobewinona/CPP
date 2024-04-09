@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 06:36:44 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/04/05 14:14:01 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:41:08 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ class Contact {
 		~Contact();
 		Contact& operator=(const Contact& other);
 
-		void		createContact(void);
+		int			createContact(void);
 		std::string	getFirstName(void);
 		std::string	getLastName(void);
 		std::string	getNickname(void);
 		std::string	getPhoneNumber(void);
 		std::string	getDarkestSecret(void);
 		void		showContactDetails(int index);
+		Contact		getContactDetails(void);
 
 	private:
 		std::string	_firstName;
