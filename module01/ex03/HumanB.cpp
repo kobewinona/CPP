@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 16:46:58 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/13 20:26:34 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:50:56 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void HumanB::attack(void)
 	if (_weapon)
 		std::cout << _name << " attacks with their " << _weapon->getType() << std::endl;
 	else
-		std::cout << _name << " has no weapon" << std::endl;
+		std::cout << _name << " attacks with no weapon" << std::endl;
 };
 
 void HumanB::setWeapon(Weapon &weapon)
