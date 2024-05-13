@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:05:26 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/13 17:53:26 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:29:48 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ public:
 	Zombie(std::string name);
 	Zombie(const Zombie &other);
 	Zombie &operator=(const Zombie &other);
-	~Zombie();
+	~Zombie(void);
 
 	void announce(void);
 
@@ -31,7 +31,8 @@ private:
 	std::string _name;
 };
 
-Zombie *newZombie(std::string name);
+Zombie *
+newZombie(std::string name);
 void randomChump(std::string name);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:05:26 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/13 17:53:38 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:29:41 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ public:
   Zombie(void);
   Zombie(const Zombie &other);
   Zombie &operator=(const Zombie &other);
-  ~Zombie();
+  ~Zombie(void);
 
   void announce(void);
   void setName(std::string name);
@@ -32,6 +32,7 @@ private:
   std::string _name;
 };
 
-Zombie *zombieHorde(int n, std::string name);
+Zombie *
+zombieHorde(int n, std::string name);
 
 #endif
