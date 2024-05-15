@@ -1,13 +1,13 @@
-NAME		= brainz
+NAME		= harl2.0
 
 CC			= c++
 CFLAGS		= -std=c++98 -Wall -Werror -Wextra
 
 RM			= rm -fr
 OBJS_DIR	= objs/
-SRCS		= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRCS		= main.cpp Harl.cpp
 OBJS		= $(SRCS:%.cpp=$(OBJS_DIR)%.o)
-DEPS		= Makefile Zombie.hpp
+DEPS		= Makefile Harl.hpp
 
 all: $(NAME)
 

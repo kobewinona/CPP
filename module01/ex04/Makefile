@@ -1,7 +1,7 @@
-NAME		= SedIsForLoosers
+NAME		= sedIsForLosers
 
 CC			= c++
-CFLAGS		= -Wall -Werror -Wextra -std=c++98
+CFLAGS		= -std=c++98 -Wall -Werror -Wextra
 
 RM			= rm -fr
 OBJS_DIR	= objs/
