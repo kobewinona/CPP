@@ -1,13 +1,13 @@
-NAME		= sedIsForLosers
+NAME		= harlFilter
 
 CC			= c++
 CFLAGS		= -std=c++98 -Wall -Werror -Wextra
 
 RM			= rm -fr
 OBJS_DIR	= objs/
-SRCS		= main.cpp
+SRCS		= main.cpp Harl.cpp
 OBJS		= $(SRCS:%.cpp=$(OBJS_DIR)%.o)
-DEPS		= Makefile
+DEPS		= Makefile Harl.hpp
 
 all: $(NAME)
 

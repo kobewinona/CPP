@@ -11,10 +11,10 @@ DEPS		= Makefile Weapon.hpp HumanA.hpp HumanB.hpp
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(DEPS)
+$(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-$(OBJS_DIR)%.o: %.cpp
+$(OBJS_DIR)%.o: %.cpp $(DEPS)
 	@mkdir -p $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
