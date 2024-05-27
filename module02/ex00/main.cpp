@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/13 16:46:36 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/17 15:52:26 by dklimkin         ###   ########.fr       */
+/*   Created: 2024/05/15 15:07:27 by dklimkin          #+#    #+#             */
+/*   Updated: 2024/05/15 17:54:41 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANA_HPP
-#define HUMANA_HPP
-
+#include <cstdlib>
 #include <iostream>
-#include <string>
-#include "Weapon.hpp"
+#include "Fixed.hpp"
 
-class HumanA
+int main(void)
 {
-public:
-	HumanA(std::string name, Weapon &);
-	HumanA(const HumanA &other);
-	HumanA &operator=(const HumanA &other);
-	~HumanA(void);
+	Fixed a;
+	Fixed b(a);
+	Fixed c;
 
-	void attack(void);
-
-private:
-	std::string _name;
-	Weapon &_weapon;
+	c = b;
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	return (EXIT_SUCCESS);
 };
-
-#endif
