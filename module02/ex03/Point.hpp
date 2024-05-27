@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 14:26:14 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/27 17:59:18 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:54:08 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,10 @@ public:
 
 	Fixed getX(void) const;
 	Fixed getY(void) const;
-	static const bool bsp(Point const a, Point const b, Point const c, Point const point);
 
 private:
 	Fixed const _x;
 	Fixed const _y;
-
-	static int _getAreaSign(Point const p1, Point const p2, Point const p3);
 };
 
 #endif

@@ -5,7 +5,7 @@ CFLAGS		= -std=c++98 #-Wall -Werror -Wextra
 
 RM			= rm -fr
 OBJS_DIR	= objs/
-SRCS		= main.cpp Fixed.cpp Point.cpp
+SRCS		= main.cpp Fixed.cpp Point.cpp bsp.cpp
 OBJS		= $(SRCS:%.cpp=$(OBJS_DIR)%.o)
 DEPS		= Makefile Fixed.hpp Point.hpp
 
