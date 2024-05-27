@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:08:07 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/17 17:29:59 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:47:26 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ public:
 	float toFloat(void) const;
 
 private:
-	int _fixedPointValue;
-	static const int _fractionalBits;
+	int _fp;
+	static const int _fractBits;
 };
 
 std::ostream &operator<<(std::ostream &os, const Fixed &obj);
