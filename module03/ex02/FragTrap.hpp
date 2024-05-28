@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 21:43:28 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 18:16:27 by dklimkin         ###   ########.fr       */
+/*   Created: 2024/05/28 13:24:14 by dklimkin          #+#    #+#             */
+/*   Updated: 2024/05/28 18:33:53 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-#define SCAVTRAP_HPP
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
 #include <iostream>
 #include <string>
 #include "ClapTrap.hpp"
 
-#define PURPLE "\033[35m"
+#define CYAN "\33[36m"
 
-class ScavTrap : public ClapTrap
+class FragTrap : public ClapTrap
 {
 public:
-	ScavTrap(void);
-	ScavTrap(std::string name);
-	ScavTrap(const ScavTrap &other);
-	ScavTrap &operator=(const ScavTrap &other);
-	~ScavTrap(void);
+	FragTrap(void);
+	FragTrap(std::string name);
+	FragTrap(const FragTrap &other);
+	FragTrap &operator=(const FragTrap &other);
+	~FragTrap(void);
 
-	void attack(const std::string &target);
-	void guardGate(void);
+	void highFivesGuys(void);
 
 private:
 	static const unsigned int _maxHP = 100;
-	static const unsigned int _maxEP = 50;
-	static const unsigned int _defaultDMG = 20;
+	static const unsigned int _maxEP = 100;
+	static const unsigned int _defaultDMG = 30;
 };
 
 #endif

@@ -6,19 +6,18 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:43:28 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 13:27:20 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:16:27 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCAVTRAP_HPP
 #define SCAVTRAP_HPP
 
+#include <iostream>
 #include <string>
 #include "ClapTrap.hpp"
 
-#define ST_MAX_HP 100
-#define ST_MAX_EP 50
-#define ST_DMG 20
+#define PURPLE "\033[35m"
 
 class ScavTrap : public ClapTrap
 {
@@ -29,7 +28,13 @@ public:
 	ScavTrap &operator=(const ScavTrap &other);
 	~ScavTrap(void);
 
+	void attack(const std::string &target);
 	void guardGate(void);
+
+private:
+	static const unsigned int _maxHP = 100;
+	static const unsigned int _maxEP = 50;
+	static const unsigned int _defaultDMG = 20;
 };
 
 #endif

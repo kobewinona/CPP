@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:02:31 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 21:06:14 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:24:22 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 // @defgroup constructors
 ClapTrap::ClapTrap(void)
-	: _name("Chuck"), _HP(_maxHP), _EP(_maxEP), _DMG(_defaultDMG)
+	: _name(_getDefaultName()), _HP(_maxHP), _EP(_maxEP), _DMG(_defaultDMG)
 {
 	std::cout << GRAY << "ClapTrap > with no name provided "
-			  << RED << _name
+			  << RED << _getDefaultName()
 			  << GRAY << " is created"
 			  << RESET << std::endl;
 };
@@ -62,6 +62,8 @@ ClapTrap::~ClapTrap(void)
 };
 
 // @defgroup getters, setters
+std::string ClapTrap::_getDefaultName(void) { return "Chucky"; };
+
 void ClapTrap::setName(std::string name) { _name = name; };
 std::string ClapTrap::getName(void) { return _name; };
 
@@ -98,7 +100,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 		return;
 	}
 
-	int takenDamage = (amount - (amount - _HP));
+	int takenDamage = amount > _HP ? _HP : amount;
 	_HP = amount > _HP ? 0 : (_HP - amount);
 
 	std::cout << RED << _name << RESET

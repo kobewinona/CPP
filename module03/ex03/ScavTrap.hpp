@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:43:28 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 18:16:27 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:01:05 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 #define PURPLE "\033[35m"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 public:
 	ScavTrap(void);
@@ -31,7 +31,7 @@ public:
 	void attack(const std::string &target);
 	void guardGate(void);
 
-private:
+protected:
 	static const unsigned int _maxHP = 100;
 	static const unsigned int _maxEP = 50;
 	static const unsigned int _defaultDMG = 20;

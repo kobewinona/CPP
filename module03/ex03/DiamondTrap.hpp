@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 21:43:28 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 18:16:27 by dklimkin         ###   ########.fr       */
+/*   Created: 2024/05/28 13:35:23 by dklimkin          #+#    #+#             */
+/*   Updated: 2024/05/28 21:21:59 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-#define SCAVTRAP_HPP
+#ifndef DIAMOND_HPP
+#define DIAMOND_HPP
 
 #include <iostream>
 #include <string>
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-#define PURPLE "\033[35m"
+#define BLUE "\33[34m"
 
-class ScavTrap : public ClapTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
 public:
-	ScavTrap(void);
-	ScavTrap(std::string name);
-	ScavTrap(const ScavTrap &other);
-	ScavTrap &operator=(const ScavTrap &other);
-	~ScavTrap(void);
+	DiamondTrap(void);
+	DiamondTrap(std::string name);
+	DiamondTrap(const DiamondTrap &other);
+	DiamondTrap &operator=(const DiamondTrap &other);
+	~DiamondTrap(void);
 
-	void attack(const std::string &target);
-	void guardGate(void);
+	using ScavTrap::attack;
+	void whoAmI(void);
 
 private:
-	static const unsigned int _maxHP = 100;
-	static const unsigned int _maxEP = 50;
-	static const unsigned int _defaultDMG = 20;
+	std::string _name;
+
+	static std::string _getDefaultName(void);
 };
 
 #endif

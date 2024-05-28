@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:02:38 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 13:28:51 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:21:11 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 #include <iostream>
 #include <string>
 
-#define MAX_HP 10
-#define MAX_EP 10
-#define DMG 0
+#define RESET "\033[0m"
+#define GRAY "\033[90m"
+#define RED "\033[31m"
+#define BALD_WHITE "\33[1;1m"
 
 class ClapTrap
 {
@@ -38,9 +39,13 @@ public:
 
 private:
 	std::string _name;
-	int _hitPoints;
-	int _energyPoints;
-	int _attackDamage;
+	unsigned int _HP;
+	unsigned int _EP;
+	unsigned int _DMG;
+
+	static const unsigned int _maxHP = 10;
+	static const unsigned int _maxEP = 10;
+	static const unsigned int _defaultDMG = 0;
 };
 
 #endif

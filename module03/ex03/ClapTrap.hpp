@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:02:38 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 18:21:09 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:23:11 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ private:
 	static const unsigned int _maxHP = 10;
 	static const unsigned int _maxEP = 10;
 	static const unsigned int _defaultDMG = 0;
+
+	static std::string _getDefaultName(void);
 
 protected:
 	unsigned int _HP;
