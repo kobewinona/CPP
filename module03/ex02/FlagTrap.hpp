@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FlagTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 15:07:27 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 13:33:17 by dklimkin         ###   ########.fr       */
+/*   Created: 2024/05/28 13:24:14 by dklimkin          #+#    #+#             */
+/*   Updated: 2024/05/28 13:31:17 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdlib>
-#include <iostream>
+#ifndef FLAGTRAP_HPP
+#define FLAGTRAP_HPP
+
+#include <string>
 #include "ClapTrap.hpp"
 
-int main(void)
-{
-	ClapTrap a("John");
-	ClapTrap b("Doe");
-	ClapTrap c;
+#define FT_MAX_HP 100
+#define FT_MAX_EP 100
+#define FT_DMG 30
 
-	a.attack(b.getName());
-	b.takeDamage(20);
-	b.beRepaired(2);
-	c.attack(a.getName());
-	return (EXIT_SUCCESS);
+class FlagTrap : public ClapTrap
+{
+public:
+	FlagTrap(void);
+	FlagTrap(std::string name);
+	FlagTrap(const FlagTrap &other);
+	FlagTrap &operator=(const FlagTrap &other);
+	~FlagTrap(void);
+
+	void highFivesGuys(void);
 };
+
+#endif

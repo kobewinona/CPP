@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:43:28 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/27 22:04:02 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:28:41 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ public:
 	~ScavTrap(void);
 
 	void guardGate(void);
-
-private:
 };
 
 #endif

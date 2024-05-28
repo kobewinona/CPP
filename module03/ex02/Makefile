@@ -1,13 +1,13 @@
-NAME		= ex00
+NAME		= ex02
 
 CC			= c++
 CFLAGS		= -std=c++98 -Wall -Werror -Wextra
 
 RM			= rm -fr
 OBJS_DIR	= objs/
-SRCS		= main.cpp ClapTrap.cpp
+SRCS		= main.cpp ClapTrap.cpp ScavTrap.cpp FlagTrap.cpp
 OBJS		= $(SRCS:%.cpp=$(OBJS_DIR)%.o)
-DEPS		= Makefile ClapTrap.hpp
+DEPS		= Makefile ClapTrap.hpp ScavTrap.hpp FlagTrap.hpp
 
 all: $(NAME)
 
