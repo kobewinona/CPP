@@ -1,7 +1,7 @@
 NAME		= ex00
 
 CC			= c++
-CFLAGS		= -std=c++98 -Wall -Werror -Wextra
+CFLAGS		= -std=c++98 -Wall -Werror -Wextra -Wshadow -Wno-shadow
 
 RM			= rm -fr
 OBJS_DIR	= objs/
