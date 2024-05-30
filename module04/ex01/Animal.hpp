@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:16:27 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/30 13:39:10 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:48:34 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ public:
 
 	std::string getType() const;
 	virtual void makeSound() const;
+	virtual void addIdea(std::string idea);
+	virtual std::string getIdea(const int index) const;
+	virtual std::string getRandomIdea() const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:25:20 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/30 13:22:08 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:47:52 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@
 #include <string>
 #include <iostream>
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal
 {
+private:
+	Brain *_brain;
+
 public:
 	Cat();
 	Cat(const Cat &other);
@@ -26,6 +30,9 @@ public:
 	~Cat();
 
 	void makeSound() const;
+	void addIdea(std::string idea);
+	std::string getIdea(const int index) const;
+	std::string getRandomIdea() const;
 };
 
 #endif

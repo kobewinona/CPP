@@ -1,13 +1,13 @@
-NAME		= ex00
+NAME		= ex01
 
-CC			= c++
+CC			= g++ -g
 CFLAGS		= -std=c++98 -Wall -Werror -Wextra -Wshadow -Wno-shadow
 
 RM			= rm -fr
 OBJS_DIR	= objs/
-SRCS		= main.cpp Animal.cpp WrongAnimal.cpp Cat.cpp WrongCat.cpp Dog.cpp
+SRCS		= main.cpp Animal.cpp WrongAnimal.cpp Cat.cpp WrongCat.cpp Dog.cpp Brain.cpp
 OBJS		= $(SRCS:%.cpp=$(OBJS_DIR)%.o)
-DEPS		= Makefile Animal.hpp WrongAnimal.hpp Cat.hpp WrongCat.hpp Dog.hpp
+DEPS		= Makefile Animal.hpp WrongAnimal.hpp Cat.hpp WrongCat.hpp Dog.hpp Brain.hpp
 
 all: $(NAME)
 

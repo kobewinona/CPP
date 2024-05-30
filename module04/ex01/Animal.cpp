@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:16:49 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/30 13:09:27 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:51:30 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,33 @@ void Animal::makeSound() const
 	std::cout << "Animal " << _type
 			  << " `makeSound()` function is called"
 			  << std::endl;
+};
+
+void Animal::addIdea(std::string idea)
+{
+	(void)idea;
+
+	std::cout << "Animal " << _type
+			  << " `addIdea()` function is called"
+			  << std::endl;
+}
+
+std::string Animal::getIdea(const int index) const
+{
+	(void)index;
+
+	std::cout << "Animal " << _type
+			  << " `getIdea()` function is called"
+			  << std::endl;
+
+	return "idea";
+};
+
+std::string Animal::getRandomIdea() const
+{
+	std::cout << "Animal " << _type
+			  << " `getRandomIdea()` function is called"
+			  << std::endl;
+
+	return "random idea";
 };
