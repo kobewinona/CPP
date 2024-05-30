@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:07:27 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 21:16:07 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:11:51 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(void)
 {
 	ClapTrap ketchum("Ketchum");
 	ClapTrap stewart("Little Stewart");
-	ScavTrap willami("Willami");
+	ScavTrap willami("WillAmI");
 	FragTrap dick("Dick Tracy");
 	DiamondTrap lucy("Lucy");
 	DiamondTrap bruce;
@@ -29,6 +29,7 @@ int main(void)
 	DiamondTrap katya("Katya");
 
 	bruce.attack(ketchum.getName());
+	ketchum.takeDamage(30);
 	ketchum.attack(stewart.getName());
 	stewart.takeDamage(20);
 	stewart.beRepaired(2);
@@ -39,10 +40,13 @@ int main(void)
 	willami.guardGate();
 	willami.attack(dick.getName());
 	katya.whoAmI();
+	katya.getStats();
 	katya.takeDamage(100);
 	dick.takeDamage(20);
 	dick.highFivesGuys();
 	lucy.whoAmI();
 	lucy.attack(ketchum.getName());
+	bruce.highFivesGuys();
+	lucy.guardGate();
 	return (EXIT_SUCCESS);
 };

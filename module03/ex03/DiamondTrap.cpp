@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:41:29 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 21:24:05 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:12:13 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 // @defgroup constructors
 DiamondTrap::DiamondTrap(void)
 	: ClapTrap(_getDefaultName() + "_clap_name"),
-	  ScavTrap(_getDefaultName()),
-	  FragTrap(_getDefaultName()),
 	  _name(_getDefaultName())
 {
 	std::cout << GRAY << "SubClass(DiamondTrap) > with no name provided "
@@ -31,8 +29,6 @@ DiamondTrap::DiamondTrap(void)
 
 DiamondTrap::DiamondTrap(std::string name)
 	: ClapTrap(name + "_clap_name"),
-	  ScavTrap(name),
-	  FragTrap(name),
 	  _name(name)
 {
 	std::cout << GRAY << "SubClass(DiamondTrap) > "
@@ -47,8 +43,6 @@ DiamondTrap::DiamondTrap(std::string name)
 
 DiamondTrap::DiamondTrap(const DiamondTrap &other)
 	: ClapTrap(other),
-	  ScavTrap(other),
-	  FragTrap(other),
 	  _name(other._name)
 {
 	std::cout << GRAY << "SubClass(DiamondTrap) > "
@@ -71,7 +65,7 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other)
 	if (this != &other)
 	{
 		ClapTrap::operator=(other);
-		_name = other._name;
+		this->_name = other._name;
 		_HP = other._HP;
 		_EP = other._EP;
 		_DMG = other._DMG;

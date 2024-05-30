@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:02:38 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 21:23:11 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:07:06 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ public:
 	void setName(std::string name);
 	std::string getName(void);
 
+	void getStats(void);
 	void attack(const std::string &target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);

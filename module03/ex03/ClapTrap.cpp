@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:02:31 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 21:24:22 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:11:02 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,13 @@ void ClapTrap::setName(std::string name) { _name = name; };
 std::string ClapTrap::getName(void) { return _name; };
 
 // @defgroup member functions
+void ClapTrap::getStats(void)
+{
+	std::cout << RED << _name << ": " << RESET
+			  << "\tHP: " << _HP << "\n\tEP: " << _EP << "\n\tDMG: " << _DMG
+			  << std::endl;
+};
+
 void ClapTrap::attack(const std::string &target)
 {
 	std::cout << RED << _name << RESET;
@@ -92,10 +99,11 @@ void ClapTrap::attack(const std::string &target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
+	std::cout << RED << _name << RESET;
+
 	if (_HP == 0)
 	{
-		std::cout << RED << _name << RESET
-				  << " is already dead, cannot take damage"
+		std::cout << " is already dead, cannot take damage"
 				  << std::endl;
 		return;
 	}
@@ -103,8 +111,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 	int takenDamage = amount > _HP ? _HP : amount;
 	_HP = amount > _HP ? 0 : (_HP - amount);
 
-	std::cout << RED << _name << RESET
-			  << " takes "
+	std::cout << " takes "
 			  << BALD_WHITE << takenDamage << RESET
 			  << " points of damage!"
 			  << std::endl;
