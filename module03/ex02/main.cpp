@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:07:27 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 18:50:07 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:51:44 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int main(void)
 	shiny.attack(charlie.getName());
 	charlie.takeDamage(20);
 	charlie.highFivesGuys();
-	return (EXIT_SUCCESS);
+
+	return EXIT_SUCCESS;
 };

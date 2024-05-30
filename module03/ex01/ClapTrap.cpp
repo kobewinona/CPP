@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:02:31 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/28 21:06:14 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:50:13 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 		return;
 	}
 
-	int takenDamage = (amount - (amount - _HP));
+	int takenDamage = amount > _HP ? _HP : amount;
 	_HP = amount > _HP ? 0 : (_HP - amount);
 
 	std::cout << RED << _name << RESET

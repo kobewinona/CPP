@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 15:07:27 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/30 16:49:16 by dklimkin         ###   ########.fr       */
+/*   Created: 2024/05/30 11:16:27 by dklimkin          #+#    #+#             */
+/*   Updated: 2024/05/30 13:39:10 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdlib>
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
+
+#include <string>
 #include <iostream>
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
 
-int main(void)
+#define RESET "\033[0m"
+#define GRAY "\033[90m"
+
+class Animal
 {
-	ClapTrap a("John");
-	ClapTrap b("Doe");
-	ClapTrap c;
-	ScavTrap d("Shiny");
-	ScavTrap e;
-	e = d;
+private:
+	static const std::string _defaultType;
 
-	a.attack(b.getName());
-	b.takeDamage(20);
-	b.beRepaired(2);
-	c.attack(a.getName());
-	a.takeDamage(20);
-	d.attack(b.getName());
-	d.takeDamage(20);
-	d.guardGate();
-	e.attack(d.getName());
-	d.takeDamage(20);
+protected:
+	std::string _type;
 
-	return EXIT_SUCCESS;
+public:
+	Animal();
+	Animal(std::string _type);
+	Animal(const Animal &other);
+	Animal &operator=(const Animal &other);
+	virtual ~Animal();
+
+	std::string getType() const;
+	virtual void makeSound() const;
 };
+
+#endif

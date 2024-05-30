@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 15:07:27 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/30 16:49:16 by dklimkin         ###   ########.fr       */
+/*   Created: 2024/05/30 14:07:53 by dklimkin          #+#    #+#             */
+/*   Updated: 2024/05/30 14:18:09 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdlib>
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
+
+#include <string>
 #include <iostream>
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
 
-int main(void)
+class Brain
 {
-	ClapTrap a("John");
-	ClapTrap b("Doe");
-	ClapTrap c;
-	ScavTrap d("Shiny");
-	ScavTrap e;
-	e = d;
+private:
+	std::string _ideas[100];
 
-	a.attack(b.getName());
-	b.takeDamage(20);
-	b.beRepaired(2);
-	c.attack(a.getName());
-	a.takeDamage(20);
-	d.attack(b.getName());
-	d.takeDamage(20);
-	d.guardGate();
-	e.attack(d.getName());
-	d.takeDamage(20);
+	static const int _maxIdeas = 100;
 
-	return EXIT_SUCCESS;
+public:
+	Brain();
+	Brain(const Brain &other);
+	Brain &operator=(const Brain &other);
+	~Brain();
+
+	void addIdea(std::string idea);
+	std::string getRandomIdea(void) const;
 };
+
+#endif
