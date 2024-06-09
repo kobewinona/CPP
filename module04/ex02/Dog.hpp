@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:25:20 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/06/09 14:17:39 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/06/09 14:18:14 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 #include <string>
 #include <iostream>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Dog : public Animal
+class Dog : public AAnimal
 {
 private:
 	Brain *_brain;
@@ -28,6 +28,7 @@ public:
 	Dog(const Dog &other);
 	Dog &operator=(const Dog &other);
 	~Dog();
+	AAnimal *clone() const;
 
 	void makeSound() const;
 	void addIdea(std::string idea);

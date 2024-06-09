@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:25:20 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/30 13:22:11 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/06/09 14:17:46 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	Dog &operator=(const Dog &other);
 	~Dog();
 
-	virtual void makeSound() const;
+	void makeSound() const;
 };
 
 #endif

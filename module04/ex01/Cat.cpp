@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:26:12 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/30 19:49:41 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/06/09 14:30:39 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ Cat &Cat::operator=(const Cat &other)
 	if (this != &other)
 	{
 		Animal::operator=(other);
-		Brain *newBrain = new Brain(*other._brain);
 		delete _brain;
-		_brain = newBrain;
+		_brain = new Brain(*other._brain);
 	}
 
 	std::cout << GRAY << _type << " is assigned"

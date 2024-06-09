@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 11:25:20 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/06/09 14:17:39 by dklimkin         ###   ########.fr       */
+/*   Created: 2024/05/30 11:16:27 by dklimkin          #+#    #+#             */
+/*   Updated: 2024/05/30 13:18:50 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-#define DOG_HPP
+#ifndef WRONGANIMAL_HPP
+#define WRONGANIMAL_HPP
 
 #include <string>
 #include <iostream>
-#include "Animal.hpp"
-#include "Brain.hpp"
 
-class Dog : public Animal
+#define RESET "\033[0m"
+#define GRAY "\033[90m"
+#define RED "\033[31m"
+
+class WrongAnimal
 {
 private:
-	Brain *_brain;
+	static const std::string _defaultType;
+
+protected:
+	std::string _type;
 
 public:
-	Dog();
-	Dog(const Dog &other);
-	Dog &operator=(const Dog &other);
-	~Dog();
+	WrongAnimal();
+	WrongAnimal(std::string _type);
+	WrongAnimal(const WrongAnimal &other);
+	WrongAnimal &operator=(const WrongAnimal &other);
+	virtual ~WrongAnimal();
 
+	std::string getType() const;
 	void makeSound() const;
-	void addIdea(std::string idea);
-	std::string getIdea(const int index) const;
-	std::string getRandomIdea() const;
 };
 
 #endif

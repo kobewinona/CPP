@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:26:12 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/06/09 14:30:48 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:56:34 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "WrongCat.hpp"
 
 // @defgroup constructors
-Dog::Dog() : Animal("Dog"), _brain(new Brain())
+WrongCat::WrongCat() : WrongAnimal("WrongCat")
 {
 	std::cout << GRAY << _type << " is created"
 			  << RESET << std::endl;
 };
 
-Dog::Dog(const Dog &other) : Animal(other), _brain(new Brain(*other._brain))
+WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other)
 {
 	std::cout << GRAY << _type << " is copied"
 			  << RESET << std::endl;
 };
 
-Dog &Dog::operator=(const Dog &other)
+WrongCat &WrongCat::operator=(const WrongCat &other)
 {
 	if (this != &other)
-	{
-		Animal::operator=(other);
-		delete _brain;
-		_brain = new Brain(*other._brain);
-	}
+		WrongAnimal::operator=(other);
 
 	std::cout << GRAY << _type << " is assigned"
 			  << RESET << std::endl;
@@ -41,31 +37,14 @@ Dog &Dog::operator=(const Dog &other)
 };
 
 // @def desctructor
-Dog::~Dog()
+WrongCat::~WrongCat()
 {
-	delete _brain;
-
 	std::cout << GRAY << _type << " is destroyed"
 			  << RESET << std::endl;
 };
 
 // @defgroup memeber functions
-void Dog::makeSound() const
+void WrongCat::makeSound() const
 {
-	std::cout << _type << " says wuff!" << std::endl;
-};
-
-void Dog::addIdea(std::string idea)
-{
-	_brain->addIdea(idea);
-};
-
-std::string Dog::getIdea(const int index) const
-{
-	return _brain->getIdea(index);
-};
-
-std::string Dog::getRandomIdea() const
-{
-	return _brain->getRandomIdea();
+	std::cout << _type << " says meow..." << std::endl;
 };
