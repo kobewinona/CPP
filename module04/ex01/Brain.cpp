@@ -6,14 +6,14 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:11:03 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/05/30 19:52:48 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/06/09 13:12:04 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Brain.hpp"
 
 // @defgroup destractor
-Brain::Brain()
+Brain::Brain() : _currentIdeaIndex(0)
 {
 	for (int i = 0; i < 100; ++i)
 	{
@@ -30,6 +30,8 @@ Brain::Brain(const Brain &other)
 	for (int i = 0; i < _maxIdeas; ++i)
 		_ideas[i] = other._ideas[i];
 
+	_currentIdeaIndex = other._currentIdeaIndex;
+
 	std::cout << GRAY << "Brain is copied" << RESET << std::endl;
 };
 
@@ -40,6 +42,8 @@ Brain &Brain::operator=(const Brain &other)
 		for (int i = 0; i < _maxIdeas; ++i)
 			_ideas[i] = other._ideas[i];
 	}
+
+	_currentIdeaIndex = other._currentIdeaIndex;
 
 	std::cout << GRAY << "Brain is assigned" << RESET << std::endl;
 
@@ -55,18 +59,8 @@ Brain::~Brain()
 // @defgroup memeber functions
 void Brain::addIdea(std::string idea)
 {
-	_ideas[18] = idea;
-	// for (int i = 0; i < _maxIdeas; ++i)
-	// {
-	// 	if (_ideas[i].empty())
-	// 	{
-	// 		_ideas[i] = idea;
-	// 		std::cout << idea << " is added" << std::endl;
-	// 		return;
-	// 	}
-	// }
-
-	// std::cout << "Brain ideas capacity is full" << std::endl;
+	_ideas[_currentIdeaIndex % 100] = idea;
+	_currentIdeaIndex += 1;
 };
 
 std::string Brain::getIdea(const int index) const

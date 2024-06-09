@@ -1,6 +1,6 @@
 NAME		= ex01
 
-CC			= g++ -g
+CC			= c++
 CFLAGS		= -std=c++98 -Wall -Werror -Wextra -Wshadow -Wno-shadow
 
 RM			= rm -fr
