@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:48 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/06/09 15:07:24 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:06:31 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,15 @@ int main(void)
 	felix->addIdea("to think deeply about life");
 	std::cout << "Felix's idea #1: " << felix->getIdea(1) << std::endl;
 
-	AAnimal *tom = felix->clone();
+	// doesn't work anymore because Animal is now an abstract class
+	// and can only be used as a prototype to create derived classes
+	// AAnimal tom(*felix);
+	// this works instead because we explicitly create a Cat instance, not Animal instance
+	AAnimal *tom = new Cat();
+	*tom = *felix;
 	std::cout << "Tom's idea #0: " << tom->getIdea(0) << std::endl;
 
-	Cat *scratchy = new Cat();
-	*scratchy = *felix;
+	AAnimal *scratchy = felix->clone();
 	std::cout << "Scratchy's idea #0: " << scratchy->getIdea(0) << std::endl;
 
 	Cat newCat;

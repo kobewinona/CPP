@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   IMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 11:25:20 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/06/17 11:04:57 by dklimkin         ###   ########.fr       */
+/*   Created: 2024/06/09 17:16:08 by dklimkin          #+#    #+#             */
+/*   Updated: 2024/06/09 17:17:24 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef IMATERIASOURCE_HPP
+#define IMATERIASOURCE_HPP
 
 #include <string>
-#include <iostream>
-#include "AAnimal.hpp"
-#include "Brain.hpp"
+#include "AMateria.hpp"
 
-class Cat : public AAnimal
+class IMateriaSource
 {
-private:
-	Brain *_brain;
-
 public:
-	Cat();
-	Cat(const Cat &other);
-	Cat &operator=(const Cat &other);
-	~Cat();
-	Cat *clone() const;
+	virtual ~IMateriaSource(){};
 
-	void makeSound() const;
-	void addIdea(std::string idea);
-	std::string getIdea(const int index) const;
-	std::string getRandomIdea() const;
+	virtual void learnMateria(AMateria *) = 0;
+	virtual AMateria *createMateria(std::string const &type) = 0;
 };
 
 #endif

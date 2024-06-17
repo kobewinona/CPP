@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Cure.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 11:25:20 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/06/17 11:04:57 by dklimkin         ###   ########.fr       */
+/*   Created: 2024/06/09 15:37:44 by dklimkin          #+#    #+#             */
+/*   Updated: 2024/06/09 15:45:17 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef CURE_HPP
+#define CURE_HPP
 
 #include <string>
 #include <iostream>
-#include "AAnimal.hpp"
-#include "Brain.hpp"
+#include "AMateria.hpp"
+#include "ICharacter.hpp"
 
-class Cat : public AAnimal
+class Cure : public AMateria
 {
-private:
-	Brain *_brain;
-
 public:
-	Cat();
-	Cat(const Cat &other);
-	Cat &operator=(const Cat &other);
-	~Cat();
-	Cat *clone() const;
+	Cure();
+	Cure(const Cure &other);
+	Cure &operator=(const Cure &other);
+	~Cure();
 
-	void makeSound() const;
-	void addIdea(std::string idea);
-	std::string getIdea(const int index) const;
-	std::string getRandomIdea() const;
+	AMateria *clone() const;
+
+	void use(ICharacter &target);
 };
 
-#endif
+#endif // CURE_HPP

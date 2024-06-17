@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 11:25:20 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/06/17 11:04:57 by dklimkin         ###   ########.fr       */
+/*   Created: 2024/06/09 15:37:44 by dklimkin          #+#    #+#             */
+/*   Updated: 2024/06/09 18:50:10 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef AMATERIA_HPP
+#define AMATERIA_HPP
 
 #include <string>
 #include <iostream>
-#include "AAnimal.hpp"
-#include "Brain.hpp"
+#include "ICharacter.hpp"
 
-class Cat : public AAnimal
+class ICharacter;
+
+class AMateria
 {
-private:
-	Brain *_brain;
+protected:
+	std::string _type;
 
 public:
-	Cat();
-	Cat(const Cat &other);
-	Cat &operator=(const Cat &other);
-	~Cat();
-	Cat *clone() const;
+	AMateria(std::string const &type);
+	AMateria(const AMateria &other);
+	AMateria &operator=(const AMateria &other);
+	virtual ~AMateria();
 
-	void makeSound() const;
-	void addIdea(std::string idea);
-	std::string getIdea(const int index) const;
-	std::string getRandomIdea() const;
+	virtual AMateria *clone() const = 0;
+
+	std::string const &getType() const;
+	virtual void use(ICharacter &target);
 };
 
-#endif
+#endif // AMATERIA_HPP

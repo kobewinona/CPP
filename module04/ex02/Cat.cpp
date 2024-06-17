@@ -6,7 +6,7 @@
 /*   By: dklimkin <dklimkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:26:12 by dklimkin          #+#    #+#             */
-/*   Updated: 2024/06/09 14:46:03 by dklimkin         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:04:59 by dklimkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ Cat::~Cat()
 };
 
 //@def clone constructor
-AAnimal *Cat::clone() const
+Cat *Cat::clone() const
 {
 	return new Cat((*this));
 }
