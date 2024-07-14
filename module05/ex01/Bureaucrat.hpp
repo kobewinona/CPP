@@ -1,8 +1,11 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
+#include "Form.hpp"
 #include <iostream>
 #include <string>
+
+class Form;
 
 class Bureaucrat {
 private:
@@ -15,12 +18,16 @@ public:
   Bureaucrat &operator=(const Bureaucrat &other);
   ~Bureaucrat();
 
+  // @defgroup get/set functions
   const std::string getName() const;
   int getGrade() const;
 
+  // @defgroup member functions
   void incrementGrade();
   void decrementGrade();
+  void signForm(Form &form);
 
+  // @defgroup exceptions
   class GradeTooLowException : public std::exception {
   public:
     const char *what() const throw() { return "Grade too low"; }

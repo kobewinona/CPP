@@ -7,20 +7,20 @@
 int main(void) {
   std::cout << GRAY << "\n-- test 1 --" << RESET << std::endl;
   try {
-    Bureaucrat bob("Bimmy", 2);
-    std::cout << bob << std::endl;
+    Bureaucrat bimmy("Bimmy", 2);
+    std::cout << bimmy << std::endl;
 
-    bob.incrementGrade();
-    std::cout << bob << std::endl;
+    bimmy.incrementGrade();
+    std::cout << bimmy << std::endl;
 
-    bob.incrementGrade();
+    bimmy.incrementGrade();
   } catch (const std::exception &error) {
     std::cerr << error.what() << std::endl;
   }
 
   std::cout << GRAY << "\n-- test 2 --" << RESET << std::endl;
   try {
-    Bureaucrat alice("Jimmy", 151);
+    Bureaucrat jimmy("Jimmy", 151);
   } catch (const std::exception &error) {
     std::cerr << error.what() << std::endl;
   }
