@@ -3,21 +3,24 @@
 
 #include "AForm.hpp"
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
-class PresidentialPardonForm : public AForm {
+class PresidentialPardonForm : public AForm
+{
 private:
-  static const int _REQUIRED_GRADE_TO_SIGN = 25;
-  static const int _REQUIRED_GRADE_TO_EXECUTE = 5;
+	static const int _REQUIRED_GRADE_TO_SIGN = 25;
+	static const int _REQUIRED_GRADE_TO_EXECUTE = 5;
 
-  const std::string _target;
+	const std::string _target;
 
 public:
-  PresidentialPardonForm(std::string target);
-  PresidentialPardonForm(const PresidentialPardonForm &other);
-  PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
-  ~PresidentialPardonForm();
+	PresidentialPardonForm(std::string target);
+	PresidentialPardonForm(const PresidentialPardonForm &other);
+	PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
+	~PresidentialPardonForm();
 
-  void execute(Bureaucrat &bureaucrat);
+	void execute(Bureaucrat &bureaucrat);
 };
 
 #endif // PRESEDENTIAL_PARDON_FROM_HPP

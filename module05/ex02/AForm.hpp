@@ -2,7 +2,6 @@
 #define AFORM_HPP
 
 #include "Bureaucrat.hpp"
-#include <cstdbool>
 #include <iomanip>
 #include <string>
 
