@@ -4,17 +4,16 @@
 #include "Data.hpp"
 #include <inttypes.h>
 
-class Serializer
-{
+class Serializer {
 private:
-	Serializer();
-	Serializer(const Serializer &other);
-	Serializer &operator=(const Serializer &other);
-	~Serializer();
+  Serializer();
+  Serializer(const Serializer &other);
+  Serializer &operator=(const Serializer &other);
+  ~Serializer();
 
 public:
-	static uintptr_t serialize(Data *ptr);
-	static Data *deserialize(uintptr_t raw);
+  static uintptr_t serialize(Data *ptr);
+  static Data *deserialize(uintptr_t raw);
 };
 
 #endif // SERIALIZER_HPP

@@ -3,11 +3,10 @@
 
 #include <string>
 
-typedef struct Data
-{
-	int id;
-	std::string value;
-	std::string label;
+typedef struct Data {
+  int id;
+  std::string value;
+  std::string label;
 } Data;
 
 #endif

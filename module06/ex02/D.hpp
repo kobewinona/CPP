@@ -3,8 +3,6 @@
 
 #include "Base.hpp"
 
-class D : public Base
-{
-};
+class D : public Base {};
 
 #endif // D_HPP
