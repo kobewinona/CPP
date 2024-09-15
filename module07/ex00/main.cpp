@@ -48,5 +48,6 @@ int main() {
   std::cout << GRAY << "\n-- test 3 (max string) --" << RESET << std::endl;
   std::cout << "Max of \"apple\" and \"banana\": "
             << ::max(std::string("apple"), std::string("banana")) << std::endl;
+
   return EXIT_SUCCESS;
 }
