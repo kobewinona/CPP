@@ -97,7 +97,8 @@ void ScalarConverter::_printDouble() {
 t_type ScalarConverter::_getLiteralType(const std::string &literal) {
   if (literal.length() == 1) {
     _charValue = literal.at(0);
-    return isdigit(_charValue) ? INT : CHAR;
+    if (!isdigit(_charValue))
+      return CHAR;
   }
 
   char *longRest = NULL, *doubleRest = NULL;
