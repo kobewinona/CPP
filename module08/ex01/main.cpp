@@ -10,6 +10,7 @@
 int main(int argc, char **argv) {
   // Test 1: Small span
   std::cout << GRAY << "\n-- test 1 (small span) --" << RESET << std::endl;
+
   try {
     Span sp1(5);
 
@@ -31,8 +32,9 @@ int main(int argc, char **argv) {
   }
 
   // Test 2: Large span with more than 10,000 numbers
-  std::cout << GRAY << "\n-- test 2 (large span: 10,000+ random numbers) --"
-            << RESET << std::endl;
+  std::cout << GRAY << "\n-- test 2 (large span: 10,000+ random numbers) --";
+  std::cout << RESET << std::endl;
+
   srand(static_cast<unsigned int>(time(0))); // Seed the random number generator
   try {
     Span sp2(TEST_SPAN_LIMIT);
@@ -53,8 +55,9 @@ int main(int argc, char **argv) {
   }
 
   // Test 3: Span with provided values
-  std::cout << GRAY << "\n-- test 3 (span with provided values) --" << RESET
-            << std::endl;
+  std::cout << GRAY << "\n-- test 3 (span with provided values) --";
+  std::cout << RESET << std::endl;
+  
   Span sp3(argc - 1);
   std::vector<int> providedValued;
   for (int i = 1; i < argc; ++i)

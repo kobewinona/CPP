@@ -1,13 +1,13 @@
-NAME		= ex01
+NAME		= ex02
 
-CC			= c++
+CC			= c++ -g
 CFLAGS		= -std=c++98 -Wall -Werror -Wextra -Wshadow -Wno-shadow
 
 RM			= rm -fr
 OBJS_DIR	= objs/
-SRCS		= main.cpp Span.cpp
+SRCS		= main.cpp
 OBJS		= $(SRCS:%.cpp=$(OBJS_DIR)%.o)
-DEPS		= Makefile Span.hpp
+DEPS		= Makefile MutantStack.hpp
 
 all: $(NAME)
 

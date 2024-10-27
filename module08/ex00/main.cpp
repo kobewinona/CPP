@@ -12,8 +12,9 @@
 
 int main() {
   // Test 1: container: Vector
-  std::cout << GRAY << "\n-- test 1 (container: vector) --" << RESET
-            << std::endl;
+  std::cout << GRAY << "\n-- test 1 (container: vector) --";
+  std::cout << RESET << std::endl;
+
   std::vector<int> myVector;
   for (unsigned int i = 0; i < MAX_VAL; ++i)
     myVector.push_back(i + 1);
@@ -55,7 +56,7 @@ int main() {
   } catch (const NotFoundException &e) {
     std::cerr << e.what() << std::endl;
   }
-
   std::cout << std::endl;
+  
   return EXIT_SUCCESS;
 }
