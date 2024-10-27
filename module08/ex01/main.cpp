@@ -20,9 +20,9 @@ int main(int argc, char **argv) {
     sp1.addNumber(11);
 
     std::cout << "Shortest Span: " << sp1.shortestSpan()
-              << std::endl; // Expected: 10
+              << std::endl; // Expected: 2
     std::cout << "Longest Span: " << sp1.longestSpan()
-              << std::endl; // Expected: 40
+              << std::endl; // Expected: 14
 
     std::cout << "Trying to add more numbers than the limit..." << std::endl;
     sp1.addNumber(60); // This should throw a SpanFullException
