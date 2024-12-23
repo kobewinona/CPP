@@ -1,20 +1,29 @@
-#pragma once
+#ifndef EASYFIND_HPP
+#define EASYFIND_HPP
 
 #include <exception>
 #include <string>
 
-class NotFoundException : public std::exception {
+class NotFoundException : public std::exception
+{
 public:
-  const char *what() const throw() { return "Element not found!"; }
+	const char *what() const throw() { return "Element not found!"; }
 };
 
-template <typename T> typename T::iterator easyfind(T &container, int value) {
-  typename T::iterator it;
+template <typename T, typename V>
+typename T::iterator easyfind(T &container, V value)
+{
+	typename T::iterator it = container.begin();
+	typename T::iterator end = container.end();
 
-  it = std::find(container.begin(), container.end(), value);
+	while (it != end)
+	{
+		if (*it == value)
+			return it;
+		++it;
+	}
 
-  if (it == container.end())
-    throw NotFoundException();
-
-  return it;
+	throw NotFoundException();
 }
+
+#endif
