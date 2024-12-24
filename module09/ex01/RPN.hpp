@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RPN_HPP
+#define RPN_HPP
 
 #include <cstdlib>
 #include <iostream>
@@ -6,14 +7,18 @@
 #include <stack>
 #include <string>
 
-enum {
-  ADD = '+',
-  SUBTRACT = '-',
-  MULTIPLY = '*',
-  DIVIDE = '/',
+enum
+{
+	ADD = '+',
+	SUBTRACT = '-',
+	MULTIPLY = '*',
+	DIVIDE = '/',
 };
 
-class RPN {
+class RPN
+{
 public:
-  static long processExpression(std::string &expression);
+	static long processExpression(std::string &expression);
 };
+
+#endif // RPN_HPP
