@@ -43,22 +43,22 @@ void printError(const std::string &errorMessage,
   std::cerr << RESET << std::endl;
 }
 
-int calculateDateDifference(const std::string &date1,
-                            const std::string &date2) {
-  int year1 = std::stoi(date1.substr(0, 4));
-  int month1 = std::stoi(date1.substr(5, 2));
-  int day1 = std::stoi(date1.substr(8, 2));
-
-  int year2 = std::stoi(date2.substr(0, 4));
-  int month2 = std::stoi(date2.substr(5, 2));
-  int day2 = std::stoi(date2.substr(8, 2));
-
-  // Approximate total days since year 0 (ignoring leap years for simplicity)
-  int totalDays1 = year1 * 365 + month1 * 30 + day1;
-  int totalDays2 = year2 * 365 + month2 * 30 + day2;
-
-  return std::abs(totalDays1 - totalDays2);
-}
+// int calculateDateDifference(const std::string &date1,
+//                             const std::string &date2) {
+//   int year1 = std::stoi(date1.substr(0, 4));
+//   int month1 = std::stoi(date1.substr(5, 2));
+//   int day1 = std::stoi(date1.substr(8, 2));
+//
+//   int year2 = std::stoi(date2.substr(0, 4));
+//   int month2 = std::stoi(date2.substr(5, 2));
+//   int day2 = std::stoi(date2.substr(8, 2));
+//
+//   // Approximate total days since year 0 (ignoring leap years for simplicity)
+//   int totalDays1 = year1 * 365 + month1 * 30 + day1;
+//   int totalDays2 = year2 * 365 + month2 * 30 + day2;
+//
+//   return std::abs(totalDays1 - totalDays2);
+// }
 
 // @defgroup member functions
 void BitcoinExchange::_getExchangeRates(const std::string &dataFileName) {
@@ -129,10 +129,7 @@ void BitcoinExchange::processInputFile(const std::string &inputFileName) {
                                inputFileName);
     }
 
-    // Print title
     std::cout << BOLD << "Converted Amounts:" << RESET << "\n";
-
-    // Print column headers
     std::cout << std::left << std::setw(15) << "Date" << std::setw(15)
               << "Value" << std::setw(15) << "ExchangeRate" << std::setw(15)
               << "Result" << std::setw(35) << ""

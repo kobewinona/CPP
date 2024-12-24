@@ -21,7 +21,7 @@
 #define NUMBER_TOO_LARGE_ERR_MSG "Number is too large"
 #define INVALID_FORMAT_ERR_MSG "Invalid number format"
 #define NUMBER_NOT_POSITIVE_ERR_MSG "Not a positive number"
-#define NO_RATE_FOR_GIVEN_DATE_ERR_MSG "No rate for date"
+#define NO_RATE_FOR_GIVEN_DATE_ERR_MSG "No exchange rate for given date"
 
 class BitcoinExchange {
 private:
