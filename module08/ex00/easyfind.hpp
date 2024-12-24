@@ -3,6 +3,7 @@
 
 #include <exception>
 #include <string>
+#include <algorithm>
 
 class NotFoundException : public std::exception
 {
@@ -13,17 +14,12 @@ public:
 template <typename T, typename V>
 typename T::iterator easyfind(T &container, V value)
 {
-	typename T::iterator it = container.begin();
-	typename T::iterator end = container.end();
+	typename T::iterator it = std::find(container.begin(), container.end(), value);
 
-	while (it != end)
-	{
-		if (*it == value)
-			return it;
-		++it;
-	}
-
-	throw NotFoundException();
+	if (it != container.end())
+		return it;
+	else
+		throw NotFoundException();
 }
 
 #endif
