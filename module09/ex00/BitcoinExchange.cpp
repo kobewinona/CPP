@@ -1,209 +1,211 @@
 #include "BitcoinExchange.hpp"
 
 // @defgroup constructors
-BitcoinExchange::BitcoinExchange(const std::string &dataFileName)
-{
-	_dataFile.open(dataFileName.c_str());
+BitcoinExchange::BitcoinExchange(const std::string &dataFileName) {
+  _dataFile.open(dataFileName.c_str());
 
-	if (!_dataFile.is_open())
-		throw std::runtime_error("Error: Unable to open file: " + dataFileName);
+  if (!_dataFile.is_open())
+    throw std::runtime_error("Error: Unable to open file: " + dataFileName);
 
-	_getExchangeRates();
+  _getExchangeRates();
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) : _exchangeRates(other._exchangeRates) {}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
+    : _exchangeRates(other._exchangeRates) {}
 
-BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
-{
-	if (this != &other)
-		_exchangeRates = other._exchangeRates;
-	return *this;
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
+  if (this != &other)
+    _exchangeRates = other._exchangeRates;
+  return *this;
 }
 
 // @def destructor
-BitcoinExchange::~BitcoinExchange()
-{
-	if (_dataFile.is_open())
-		_dataFile.close();
+BitcoinExchange::~BitcoinExchange() {
+  if (_dataFile.is_open())
+    _dataFile.close();
 }
 
 // @defgroup helper functions
-std::ifstream *openFile(const std::string &fileName)
-{
-	std::ifstream *file = new std::ifstream(fileName.c_str());
+bool isLeapYear(int year) {
+  return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
 
-	if (!file->is_open())
-	{
-		delete file;
-		throw std::runtime_error("Error: Unable to open file: " + fileName);
-	}
+bool isValidDate(const std::string &date) {
+  std::istringstream ss(date);
+  int year, month, day;
+  char dash1, dash2;
 
-	return file;
+  if (!(ss >> year >> dash1 >> month >> dash2 >> day) || dash1 != '-' ||
+      dash2 != '-') {
+    return false;
+  }
+
+  if (year < 0 || month < 1 || month > 12 || day < 1) {
+    return false;
+  }
+
+  const int daysInMonth[] = {
+      0,  31, (isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31,
+      30, 31};
+
+  return day <= daysInMonth[month];
 }
 
 void printError(const std::string &errorMessage,
-				const std::string &fileName = "", int lineNumber = -1)
-{
-	std::cerr << RED << "Error: " << errorMessage;
+                const std::string &fileName = "", int lineNumber = -1) {
+  std::cerr << RED << "Error: " << errorMessage;
 
-	if (!fileName.empty())
-	{
-		std::cerr << " (file: " << fileName;
-		if (lineNumber != -1)
-			std::cerr << ", line: " << lineNumber;
-		std::cerr << ")";
-	}
-	else if (lineNumber != -1)
-		std::cerr << " (line: " << lineNumber << ")";
+  if (!fileName.empty()) {
+    std::cerr << " (file: " << fileName;
+    if (lineNumber != -1)
+      std::cerr << ", line: " << lineNumber;
+    std::cerr << ")";
+  } else if (lineNumber != -1)
+    std::cerr << " (line: " << lineNumber << ")";
 
-	std::cerr << RESET << std::endl;
+  std::cerr << RESET << std::endl;
 }
 
 // @defgroup member functions
-void BitcoinExchange::_getExchangeRates()
-{
-	try
-	{
-		std::string line;
-		if (!std::getline(_dataFile, line) || line.empty())
-			throw std::runtime_error("Error: File is empty or unreadable.");
+void BitcoinExchange::_getExchangeRates() {
+  try {
+    std::string line;
+    if (!std::getline(_dataFile, line) || line.empty())
+      throw std::runtime_error("Error: File is empty or unreadable.");
 
-		int lineNumber = 2;
-		while (std::getline(_dataFile, line))
-		{
-			std::istringstream ss(line);
-			std::string date;
-			float rate;
+    int lineNumber = 2;
+    while (std::getline(_dataFile, line)) {
+      std::istringstream ss(line);
+      std::string date;
+      float rate;
 
-			if (std::getline(ss, date, ',') && ss >> rate)
-				_exchangeRates[date] = rate;
-			else
-				printError("Invalid format in file at line", "", lineNumber);
-			++lineNumber;
-		}
+      if (std::getline(ss, date, ',') && ss >> rate)
+        _exchangeRates[date] = rate;
+      else
+        printError("Invalid format in file at line", "", lineNumber);
+      ++lineNumber;
+    }
 
-		if (_exchangeRates.empty())
-			throw std::runtime_error("Error: No valid data found in file.");
-	}
-	catch (const std::exception &e)
-	{
-		printError(e.what());
-	}
+    if (_exchangeRates.empty())
+      throw std::runtime_error("Error: No valid data found in file.");
+  } catch (const std::exception &e) {
+    printError(e.what());
+  }
 }
 
-void BitcoinExchange::printExchangeRates()
-{
-	// Print title
-	std::cout << BOLD << "Exchange Rates: " << RESET << "\n";
+void BitcoinExchange::printExchangeRates() {
+  // Print title
+  std::cout << BOLD << "Exchange Rates: " << RESET << "\n";
 
-	// Print column headers
-	std::cout << std::left << std::setw(10) << "Index" << std::setw(15) << "Date"
-			  << std::setw(15) << "Rate"
-			  << "\n";
+  // Print column headers
+  std::cout << std::left << std::setw(10) << "Index" << std::setw(15) << "Date"
+            << std::setw(15) << "Rate"
+            << "\n";
 
-	// Print a line under the headers
-	std::cout << std::setfill('-') << std::setw(40) << "-" << std::setfill(' ')
-			  << "\n";
+  // Print a line under the headers
+  std::cout << std::setfill('-') << std::setw(40) << "-" << std::setfill(' ')
+            << "\n";
 
-	// Print each row in the container
-	int index = 0;
-	for (std::map<std::string, float>::const_iterator it = _exchangeRates.begin();
-		 it != _exchangeRates.end(); ++it)
-	{
-		std::cout << std::left << std::setw(10) << index << std::setw(15)
-				  << it->first << std::setw(15) << it->second << "\n";
-		++index;
-	}
+  // Print each row in the container
+  int index = 0;
+  for (std::map<std::string, float>::const_iterator it = _exchangeRates.begin();
+       it != _exchangeRates.end(); ++it) {
+    std::cout << std::left << std::setw(10) << index << std::setw(15)
+              << it->first << std::setw(15) << it->second << "\n";
+    ++index;
+  }
 
-	std::cout << std::endl;
+  std::cout << std::endl;
 }
 
-void BitcoinExchange::processInputFile(const std::string &inputFileName)
-{
-	try
-	{
-		std::ifstream inputFile(inputFileName.c_str());
-		if (!inputFile.is_open())
-			throw std::runtime_error("Error: Unable to open file: " + inputFileName);
+void BitcoinExchange::processInputFile(const std::string &inputFileName) {
+  try {
+    std::ifstream inputFile(inputFileName.c_str());
+    if (!inputFile.is_open())
+      throw std::runtime_error("Error: Unable to open file: " + inputFileName);
 
-		std::string line;
-		if (!std::getline(inputFile, line) || line.empty())
-			throw std::runtime_error("Error: File is empty or unreadable: " + inputFileName);
+    std::string line;
+    if (!std::getline(inputFile, line) || line.empty())
+      throw std::runtime_error("Error: File is empty or unreadable: " +
+                               inputFileName);
 
-		std::cout << BOLD << "Converted Amounts:" << RESET << "\n";
-		std::cout << std::left << std::setw(15) << "Date" << std::setw(15)
-				  << "Value" << std::setw(15) << "ExchangeRate" << std::setw(15)
-				  << "Result" << std::setw(35) << "" << "\n";
-		std::cout << std::setfill('-') << std::setw(95) << "-" << std::setfill(' ') << "\n";
+    std::cout << BOLD << "Converted Amounts:" << RESET << "\n";
+    std::cout << std::left << std::setw(15) << "Date" << std::setw(15)
+              << "Value" << std::setw(15) << "ExchangeRate" << std::setw(15)
+              << "Result" << std::setw(35) << ""
+              << "\n";
+    std::cout << std::setfill('-') << std::setw(95) << "-" << std::setfill(' ')
+              << "\n";
 
-		int lineNumber = 2;
-		while (std::getline(inputFile, line))
-		{
-			std::istringstream ss(line);
-			std::string date;
-			float value;
+    int lineNumber = 2;
+    while (std::getline(inputFile, line)) {
+      std::istringstream ss(line);
+      std::string date;
+      float value;
 
-			// Parse the input line
-			if (!(std::getline(ss, date, '|') && ss >> value))
-			{
-				printError(INVALID_FORMAT_ERR_MSG, inputFileName, lineNumber++);
-				continue;
-			}
+      // Parse the input line
+      if (!(std::getline(ss, date, '|') && ss >> value)) {
+        printError(INVALID_FORMAT_ERR_MSG, inputFileName, lineNumber++);
+        continue;
+      }
 
-			// Handle a number bigger than max value
-			if (value > MAX_INPUT_VALUE)
-			{
-				printError(NUMBER_TOO_LARGE_ERR_MSG, inputFileName, lineNumber++);
-				continue;
-			}
+      // Validate input date
+      if (!isValidDate(date)) {
+        printError(INVALID_DATE_ERR_MSG, inputFileName, lineNumber++);
+        continue;
+      }
 
-			// Trim whitespace from date and value
-			date.erase(date.find_last_not_of(WHITESPACE) + 1);
-			date.erase(0, date.find_first_not_of(WHITESPACE));
+      // Handle a number bigger than max value
+      if (value > MAX_INPUT_VALUE) {
+        printError(NUMBER_TOO_LARGE_ERR_MSG, inputFileName, lineNumber++);
+        continue;
+      }
 
-			// Handle a number smaller than 0
-			if (value <= 0)
-			{
-				printError(NUMBER_NOT_POSITIVE_ERR_MSG, inputFileName, lineNumber);
-				++lineNumber;
-				continue;
-			}
+      // Trim whitespace from date and value
+      date.erase(date.find_last_not_of(WHITESPACE) + 1);
+      date.erase(0, date.find_first_not_of(WHITESPACE));
 
-			std::string closestDate;
-			std::string warning;
-			float rate;
-			std::map<std::string, float>::const_iterator it =
-				_exchangeRates.lower_bound(date);
+      // Handle a number smaller than 0
+      if (value <= 0) {
+        printError(NUMBER_NOT_POSITIVE_ERR_MSG, inputFileName, lineNumber);
+        ++lineNumber;
+        continue;
+      }
 
-			if (it == _exchangeRates.begin() && it->first != date)
-			{
-				printError(NO_RATE_FOR_GIVEN_DATE_ERR_MSG, inputFileName, lineNumber);
-				++lineNumber;
-				continue;
-			}
+      std::string closestDate;
+      std::string warning;
+      float rate;
+      std::map<std::string, float>::const_iterator it =
+          _exchangeRates.lower_bound(date);
 
-			if (it == _exchangeRates.end() || it->first != date)
-				--it;
+      if (it == _exchangeRates.begin() && it->first != date) {
+        printError(NO_RATE_FOR_GIVEN_DATE_ERR_MSG, inputFileName, lineNumber);
+        ++lineNumber;
+        continue;
+      }
 
-			closestDate = it->first;
-			rate = it->second;
+      if (it == _exchangeRates.end() || it->first != date)
+        --it;
 
-			// Update the warning message if the date doesn't match
-			if (closestDate != date)
-				warning = std::string(YELLOW) + "Warning: using rate from " + closestDate + std::string(RESET);
+      closestDate = it->first;
+      rate = it->second;
 
-			float result = value * rate;
-			std::cout << std::fixed << std::setprecision(2);
-			std::cout << std::left << std::setw(15) << date << std::setw(15) << value
-					  << std::setw(15) << rate << std::setw(15) << result << warning << std::endl;
+      // Update the warning message if the date doesn't match
+      if (closestDate != date)
+        warning = std::string(YELLOW) + "Warning: using rate from " +
+                  closestDate + std::string(RESET);
 
-			++lineNumber;
-		}
+      float result = value * rate;
+      std::cout << std::fixed << std::setprecision(2);
+      std::cout << std::left << std::setw(15) << date << std::setw(15) << value
+                << std::setw(15) << rate << std::setw(15) << result << warning
+                << std::endl;
 
-		std::cout << std::endl;
-	}
-	catch (const std::exception &e)
-	{
-		printError(e.what());
-	}
+      ++lineNumber;
+    }
+
+    std::cout << std::endl;
+  } catch (const std::exception &e) {
+    printError(e.what());
+  }
 }

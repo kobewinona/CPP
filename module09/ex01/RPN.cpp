@@ -1,53 +1,59 @@
 #include "RPN.hpp"
 
-long RPN::processExpression(std::string &expression)
-{
-	std::stack<long> stack;
+// @defgroup constructors
+RPN::RPN() {}
+RPN::RPN(const RPN &other) { (void)other; }
+RPN &RPN::operator=(const RPN &other) {
+  (void)other;
+  return *this;
+}
 
-	for (size_t i = 0; i < expression.size(); ++i)
-	{
-		char ch = expression[i];
+// @def destructor
+RPN::~RPN() {}
 
-		if (std::isspace(ch))
-			continue;
+long RPN::processExpression(std::string &expression) {
+  std::stack<long> stack;
 
-		if (std::isdigit(ch))
-			stack.push(ch - '0');
-		else if (ch == ADD || ch == SUBTRACT || ch == MULTIPLY || ch == DIVIDE)
-		{
-			if (stack.size() < 2)
-				throw std::runtime_error("Insufficient operands");
+  for (size_t i = 0; i < expression.size(); ++i) {
+    char ch = expression[i];
 
-			long b = stack.top();
-			stack.pop();
-			long a = stack.top();
-			stack.pop();
+    if (std::isspace(ch))
+      continue;
 
-			switch (ch)
-			{
-			case ADD:
-				stack.push(a + b);
-				break;
-			case SUBTRACT:
-				stack.push(a - b);
-				break;
-			case MULTIPLY:
-				stack.push(a * b);
-				break;
-			case DIVIDE:
-				if (b == 0)
-					throw std::runtime_error("Division by zero");
+    if (std::isdigit(ch))
+      stack.push(ch - '0');
+    else if (ch == ADD || ch == SUBTRACT || ch == MULTIPLY || ch == DIVIDE) {
+      if (stack.size() < 2)
+        throw std::runtime_error("Insufficient operands");
 
-				stack.push(a / b);
-				break;
-			}
-		}
-		else
-			throw std::runtime_error("Invalid token: " + std::string(1, ch));
-	}
+      long b = stack.top();
+      stack.pop();
+      long a = stack.top();
+      stack.pop();
 
-	if (stack.size() != 1)
-		throw std::runtime_error("Invalid expression");
+      switch (ch) {
+      case ADD:
+        stack.push(a + b);
+        break;
+      case SUBTRACT:
+        stack.push(a - b);
+        break;
+      case MULTIPLY:
+        stack.push(a * b);
+        break;
+      case DIVIDE:
+        if (b == 0)
+          throw std::runtime_error("Division by zero");
 
-	return stack.top();
+        stack.push(a / b);
+        break;
+      }
+    } else
+      throw std::runtime_error("Invalid token: " + std::string(1, ch));
+  }
+
+  if (stack.size() != 1)
+    throw std::runtime_error("Invalid expression");
+
+  return stack.top();
 }

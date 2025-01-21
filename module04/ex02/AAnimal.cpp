@@ -12,41 +12,33 @@
 
 #include "AAnimal.hpp"
 
-const std::string AAnimal::_defaultType = "unkown type";
+const std::string AAnimal::_defaultType = "unknown type";
 
 // @defgroup constructors
-AAnimal::AAnimal(std::string type) : _type(type)
-{
-	std::cout << GRAY << "AAnimal "
-			  << type << " is created"
-			  << RESET << std::endl;
+AAnimal::AAnimal(std::string type) : _type(type) {
+  std::cout << GRAY << "AAnimal " << type << " is created" << RESET
+            << std::endl;
 };
 
-AAnimal::AAnimal(const AAnimal &other) : _type(other._type)
-{
-	std::cout << GRAY << "AAnimal "
-			  << _type << " is copied"
-			  << RESET << std::endl;
+AAnimal::AAnimal(const AAnimal &other) : _type(other._type) {
+  std::cout << GRAY << "AAnimal " << _type << " is copied" << RESET
+            << std::endl;
 };
 
-AAnimal &AAnimal::operator=(const AAnimal &other)
-{
-	if (this != &other)
-		_type = other._type;
+AAnimal &AAnimal::operator=(const AAnimal &other) {
+  if (this != &other)
+    _type = other._type;
 
-	std::cout << GRAY << "AAnimal "
-			  << _type << " is assigned"
-			  << RESET << std::endl;
+  std::cout << GRAY << "AAnimal " << _type << " is assigned" << RESET
+            << std::endl;
 
-	return (*this);
+  return (*this);
 };
 
-// @def desctructor
-AAnimal::~AAnimal()
-{
-	std::cout << GRAY << "AAnimal "
-			  << _type << " is destroyed"
-			  << RESET << std::endl;
+// @def destructor
+AAnimal::~AAnimal() {
+  std::cout << GRAY << "AAnimal " << _type << " is destroyed" << RESET
+            << std::endl;
 };
 
 // @defgroup member functions

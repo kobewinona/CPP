@@ -2,12 +2,12 @@
 #define BITCOIN_EXCHANGE_HPP
 
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <map>
 #include <sstream>
 #include <stdexcept>
 #include <string>
-#include <iomanip>
 
 // @defgroup typography
 #define RED "\033[31m"
@@ -24,23 +24,23 @@
 #define INVALID_FORMAT_ERR_MSG "Invalid number format"
 #define NUMBER_NOT_POSITIVE_ERR_MSG "Not a positive number"
 #define NO_RATE_FOR_GIVEN_DATE_ERR_MSG "No exchange rate for given date"
+#define INVALID_DATE_ERR_MSG "Invalid date format"
 
-class BitcoinExchange
-{
+class BitcoinExchange {
 private:
-	std::ifstream _dataFile;
-	std::map<std::string, float> _exchangeRates;
+  std::ifstream _dataFile;
+  std::map<std::string, float> _exchangeRates;
 
-	void _getExchangeRates();
+  void _getExchangeRates();
 
 public:
-	BitcoinExchange(const std::string &dataFileName);
-	BitcoinExchange(const BitcoinExchange &other);
-	BitcoinExchange &operator=(const BitcoinExchange &other);
-	~BitcoinExchange();
+  BitcoinExchange(const std::string &dataFileName);
+  BitcoinExchange(const BitcoinExchange &other);
+  BitcoinExchange &operator=(const BitcoinExchange &other);
+  ~BitcoinExchange();
 
-	void printExchangeRates();
-	void processInputFile(const std::string &inputFileName);
+  void printExchangeRates();
+  void processInputFile(const std::string &inputFileName);
 };
 
 #endif // BITCOIN_EXCHANGE_HPP

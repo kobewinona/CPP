@@ -7,18 +7,20 @@
 #include <stack>
 #include <string>
 
-enum
-{
-	ADD = '+',
-	SUBTRACT = '-',
-	MULTIPLY = '*',
-	DIVIDE = '/',
+enum {
+  ADD = '+',
+  SUBTRACT = '-',
+  MULTIPLY = '*',
+  DIVIDE = '/',
 };
 
-class RPN
-{
+class RPN {
 public:
-	static long processExpression(std::string &expression);
+  RPN();
+  RPN(const RPN &other);
+  RPN &operator=(const RPN &other);
+  ~RPN();
+  static long processExpression(std::string &expression);
 };
 
 #endif // RPN_HPP
